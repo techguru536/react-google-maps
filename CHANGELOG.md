@@ -1,5 +1,94 @@
 # Changelog
 
+## 1.0.0 (2024-08-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* **map:** Introduction of map instance caching needed a change to the DOM-Structure produced by the map component (added a div-element owned by the Map component to contain the map instance).
+* **map:** The type passed to the `onProjectionChange` is changed from `MapCameraChangedEvent` to `MapEvent`, so there are no longer camera-props available for this event
+* removed the `useStreetViewPanorama()` and `useDirectionsService()` hooks.
+* The behaviour of the props controlling camera parameters (center, zoom, heading and tilt) changed. Unless you are using controlled props, you have to change the prop names from e.g. `center` to `defaultCenter` (the same goes for `zoom`, `heading` and `tilt`).
+* removed MapProps.onLoadMap
+* loading multiple libraries at once is no longer supported, changed the return type of useMapsLibrary.
+
+### Features
+
+* add example for drawing tools ([#220](https://github.com/techguru536/react-google-maps/issues/220)) ([e230977](https://github.com/techguru536/react-google-maps/commit/e2309779e28fff09ed32ac2c2959564e196eaa4f))
+* add new prop InfoWindow.shouldFocus ([#254](https://github.com/techguru536/react-google-maps/issues/254)) ([07a03f6](https://github.com/techguru536/react-google-maps/commit/07a03f639371959fd7fc3c6cf222f81fe81c089d))
+* add solution-channel parameter ([#334](https://github.com/techguru536/react-google-maps/issues/334)) ([e0da181](https://github.com/techguru536/react-google-maps/commit/e0da1813a3018a6378efc88a611495da1594f926))
+* **advanced-marker:** add style prop to add styles to content-element ([#337](https://github.com/techguru536/react-google-maps/issues/337)) ([0bd3c7f](https://github.com/techguru536/react-google-maps/commit/0bd3c7f785ef984a168fda18c3b3436009e33517))
+* **advanced-marker:** add support for `clickable` option ([#341](https://github.com/techguru536/react-google-maps/issues/341)) ([7617107](https://github.com/techguru536/react-google-maps/commit/76171078fa75e53b9d330d35fc4ed0f970b467c6))
+* Allow &lt;Pin&gt; glyphs to be passed as children (close [#98](https://github.com/techguru536/react-google-maps/issues/98)) ([#99](https://github.com/techguru536/react-google-maps/issues/99)) ([eb0f41b](https://github.com/techguru536/react-google-maps/commit/eb0f41be1c92abe99e7a9c1468fb9a5c75de0997))
+* better handling for missing map configuration ([#308](https://github.com/techguru536/react-google-maps/issues/308)) ([61646ae](https://github.com/techguru536/react-google-maps/commit/61646aef91c440b5698852ff1c4d0344a585359b))
+* cleanup map, remove onLoadMap prop ([3fee940](https://github.com/techguru536/react-google-maps/commit/3fee940ee0c455eebd83e5719945b962a9a7f68f))
+* handle API-key errors in map-component ([#165](https://github.com/techguru536/react-google-maps/issues/165)) ([c620dcb](https://github.com/techguru536/react-google-maps/commit/c620dcbd16cda284ff0f9df96038869feec91513))
+* implement dynamic library loading ([5280114](https://github.com/techguru536/react-google-maps/commit/52801147ea68700c7122a96853e168ea28d878d2))
+* implement props for all map-events with custom MapEvent type ([c56b8b3](https://github.com/techguru536/react-google-maps/commit/c56b8b3fd9459f40b0fcd3b5f551f42033ab98c8))
+* **infowindow:** add `className` and `style` props ([9951871](https://github.com/techguru536/react-google-maps/commit/9951871ad062896a4f69a22e21d825d8fb139c43))
+* **infowindow:** add missing options and events ([9951871](https://github.com/techguru536/react-google-maps/commit/9951871ad062896a4f69a22e21d825d8fb139c43))
+* **infowindow:** InfoWindow overhaul ([#335](https://github.com/techguru536/react-google-maps/issues/335)) ([9951871](https://github.com/techguru536/react-google-maps/commit/9951871ad062896a4f69a22e21d825d8fb139c43))
+* **map:** implement initial version of map-instance caching ([#349](https://github.com/techguru536/react-google-maps/issues/349)) ([62ab005](https://github.com/techguru536/react-google-maps/commit/62ab0059344f010ab22ef1e4496da1c94b20a16f))
+* new MapControl component ([#51](https://github.com/techguru536/react-google-maps/issues/51)) ([8c83d3b](https://github.com/techguru536/react-google-maps/commit/8c83d3b3ca68647067314d7e06560f7632581ccc))
+* restore map state when changing mapId ([#213](https://github.com/techguru536/react-google-maps/issues/213)) ([33f1924](https://github.com/techguru536/react-google-maps/commit/33f192415340df22e4c44fc18d8bd554ec619b2f))
+* standalone examples (CodeSandbox) ([#48](https://github.com/techguru536/react-google-maps/issues/48)) ([a8d9812](https://github.com/techguru536/react-google-maps/commit/a8d9812df3f4ca6974fa78752dce71ade44f0cd0))
+* update map viewport when props are changed ([23d3907](https://github.com/techguru536/react-google-maps/commit/23d3907ea3ae89ea2974e926b97a744d46e77035))
+* useMapsLibrary returns API object instead of boolean ([#26](https://github.com/techguru536/react-google-maps/issues/26)) ([23691fa](https://github.com/techguru536/react-google-maps/commit/23691faac3dc23f54dfb15fbf83b84634671a6da))
+
+
+### Bug Fixes
+
+* add `loading=async` to maps API url ([c514894](https://github.com/techguru536/react-google-maps/commit/c514894e04739f0aa6478b442d9fbc71e7753397))
+* add map camera state tracking ([#84](https://github.com/techguru536/react-google-maps/issues/84)) ([a844c8a](https://github.com/techguru536/react-google-maps/commit/a844c8acb96aeef238304df0eb15738c645ec0d0))
+* add types to package exports ([#62](https://github.com/techguru536/react-google-maps/issues/62)) ([9960daf](https://github.com/techguru536/react-google-maps/commit/9960dafb171266c7b1383c28f83f35fec69f23d7))
+* **advanced-marker:** remove content element in cleanup ([#351](https://github.com/techguru536/react-google-maps/issues/351)) ([b7ac2b3](https://github.com/techguru536/react-google-maps/commit/b7ac2b3a4172e2173333f94c3cc1d227c21d92f8))
+* allow AdvancedMarker to accept space-separated multiple class names ([#143](https://github.com/techguru536/react-google-maps/issues/143)) ([dd2e7f2](https://github.com/techguru536/react-google-maps/commit/dd2e7f294b3db9cb770496a1f00944eed0d1c715))
+* api-loader didn't call callback on repeat load calls ([46d7318](https://github.com/techguru536/react-google-maps/commit/46d7318f9735fcf761f555c6295bade1dd513bfd))
+* avoid re-render on every importLibrary() call ([#135](https://github.com/techguru536/react-google-maps/issues/135)) ([5fa57b4](https://github.com/techguru536/react-google-maps/commit/5fa57b4462016ec3d12eba142c7b37a87677e109))
+* **docs:** use correct spelling of JavaScript ([#312](https://github.com/techguru536/react-google-maps/issues/312)) ([ef5a37f](https://github.com/techguru536/react-google-maps/commit/ef5a37fe88f522a84eefb0666657f6e3885b3953))
+* don't use potentially unreliable addListener functions ([#158](https://github.com/techguru536/react-google-maps/issues/158)) ([d541d2e](https://github.com/techguru536/react-google-maps/commit/d541d2e9967d874b44efad9ef3f1a3421e89d835))
+* empty commit to trigger release-please ([aca2b4b](https://github.com/techguru536/react-google-maps/commit/aca2b4b094d8e4ed91b085b2289b6c85e47cbce7))
+* export api-loading-status types ([#231](https://github.com/techguru536/react-google-maps/issues/231)) ([5b1fb62](https://github.com/techguru536/react-google-maps/commit/5b1fb62353b06d7302799250416538bb7aedf28c)), closes [#230](https://github.com/techguru536/react-google-maps/issues/230)
+* export event-types ([#167](https://github.com/techguru536/react-google-maps/issues/167)) ([376fde1](https://github.com/techguru536/react-google-maps/commit/376fde1ecddfaf8538071f466594d7cc971a9fec))
+* export type properly ([#170](https://github.com/techguru536/react-google-maps/issues/170)) ([661dd49](https://github.com/techguru536/react-google-maps/commit/661dd495d70974aee3f548934402715290d55832))
+* infowindow double rendering and eslint warnings ([#185](https://github.com/techguru536/react-google-maps/issues/185)) ([6d885da](https://github.com/techguru536/react-google-maps/commit/6d885dae3c5fd6e2221fd197ff7e4d146b144887))
+* InfoWindow.shouldFocus doesn't work with false as value ([#278](https://github.com/techguru536/react-google-maps/issues/278)) ([1091c94](https://github.com/techguru536/react-google-maps/commit/1091c94193582de66ac04cdf49dd447e292f977b))
+* **infowindow:** add missing cleanup for infowindow ([9951871](https://github.com/techguru536/react-google-maps/commit/9951871ad062896a4f69a22e21d825d8fb139c43))
+* **infowindow:** better dependency checks, using `useDeepCompareEffect` where needed ([9951871](https://github.com/techguru536/react-google-maps/commit/9951871ad062896a4f69a22e21d825d8fb139c43))
+* **infowindow:** removed unneeded dependency in infowindow hooks ([9951871](https://github.com/techguru536/react-google-maps/commit/9951871ad062896a4f69a22e21d825d8fb139c43))
+* map controls crashing when invalid key is provided ([#290](https://github.com/techguru536/react-google-maps/issues/290)) ([1589712](https://github.com/techguru536/react-google-maps/commit/1589712cbfc537cb40c73b877281382879d5cb21))
+* **map:** (un)register map instance without id ([8e0162b](https://github.com/techguru536/react-google-maps/commit/8e0162b8748c508f4f6e8ac213f511265651dcc8))
+* **map:** change event-type of projectionChanged event to MapEvent ([#346](https://github.com/techguru536/react-google-maps/issues/346)) ([5160d56](https://github.com/techguru536/react-google-maps/commit/5160d56562d9696687c46848662dddb69e03882d))
+* **map:** fix changing the map-id ([aa59203](https://github.com/techguru536/react-google-maps/commit/aa5920391e75691274314db683cdc51c4fb4e9b9))
+* **map:** set container position to relative ([#356](https://github.com/techguru536/react-google-maps/issues/356)) ([03493ac](https://github.com/techguru536/react-google-maps/commit/03493ac8c1cebf494f1c718a908be26731405515))
+* **map:** set other container position to relative ([#357](https://github.com/techguru536/react-google-maps/issues/357)) ([4a2fff8](https://github.com/techguru536/react-google-maps/commit/4a2fff80f69a56bcdebe83e5b38b49f95d02f7b9))
+* markers not removed in strict mode ([#15](https://github.com/techguru536/react-google-maps/issues/15)) ([857d279](https://github.com/techguru536/react-google-maps/commit/857d27906ecce5c45b63f9c1959bb8f8763f290a)), closes [#14](https://github.com/techguru536/react-google-maps/issues/14)
+* memoize context-values to avoid excessive re-renders ([#287](https://github.com/techguru536/react-google-maps/issues/287)) ([8b3692c](https://github.com/techguru536/react-google-maps/commit/8b3692cfa02e3e5fd8543ac3ce93231983bbb379)), closes [#285](https://github.com/techguru536/react-google-maps/issues/285)
+* move @types/google.maps to dependencies ([#115](https://github.com/techguru536/react-google-maps/issues/115)) ([d9a8e33](https://github.com/techguru536/react-google-maps/commit/d9a8e331b9cf7dcd9158c6cc543bf3fad8dff2ef)), closes [#106](https://github.com/techguru536/react-google-maps/issues/106)
+* omit map prop from markers ([#305](https://github.com/techguru536/react-google-maps/issues/305)) ([29724c0](https://github.com/techguru536/react-google-maps/commit/29724c053d4a41ee11d98ccab1baaeec78ef5362))
+* output an error when useMap is called outside APIProvider ([#117](https://github.com/techguru536/react-google-maps/issues/117)) ([1700089](https://github.com/techguru536/react-google-maps/commit/1700089992349de605cf84c4133e9838a04a4d40))
+* prepare for first publishing ([274bcfa](https://github.com/techguru536/react-google-maps/commit/274bcfa7864927fdefdcc54a79519dd3da896e83))
+* prevent passing empty parameters to ApiLoader ([#193](https://github.com/techguru536/react-google-maps/issues/193)) ([aaa4e12](https://github.com/techguru536/react-google-maps/commit/aaa4e1247d231ad4433daa6df7f283995daffdb4))
+* remove deep-link into fast-deep-equal package ([#208](https://github.com/techguru536/react-google-maps/issues/208)) ([2c7d48e](https://github.com/techguru536/react-google-maps/commit/2c7d48efef804b6225fad81426b2aac29795679c))
+* replace prop `gmpDraggable` with `draggable` in AdvancedMarker ([#53](https://github.com/techguru536/react-google-maps/issues/53)) ([801821d](https://github.com/techguru536/react-google-maps/commit/801821d676aa4ee927d8299c29a23e70062652e5))
+* trigger release for new library function from commit 31f2655 ([b54dcc9](https://github.com/techguru536/react-google-maps/commit/b54dcc91abf957342a6b634b104a3d7b60daab15))
+* update ControlPosition values ([#71](https://github.com/techguru536/react-google-maps/issues/71)) ([fa678e7](https://github.com/techguru536/react-google-maps/commit/fa678e7f2dac46b5dd6fd1ce908a553d94bef95d))
+* update usage of useMapsLibrary in AdvancedMarker ([#55](https://github.com/techguru536/react-google-maps/issues/55)) ([3f3bc12](https://github.com/techguru536/react-google-maps/commit/3f3bc12784c1c396f780c8b909d2cc99bb19335f))
+* use moveCamera and useLayoutEffect for faster map-updates ([f28081a](https://github.com/techguru536/react-google-maps/commit/f28081ae4cc239f26adc7173634a2811c15d3389))
+* use parameter `v` instead of `version` ([94fcbcc](https://github.com/techguru536/react-google-maps/commit/94fcbcc360dc32a3786850bc320d278b8ee968f7))
+
+
+### Miscellaneous Chores
+
+* add registry-url to release action ([626d9e4](https://github.com/techguru536/react-google-maps/commit/626d9e40a59401cd89686b08a2cb78635326edc2))
+* tag 1.0.0 release ([d405c55](https://github.com/techguru536/react-google-maps/commit/d405c551473b338c7d14ff1c34ccc67853d48a30))
+
+
+### Code Refactoring
+
+* improved state-handling implementation ([#181](https://github.com/techguru536/react-google-maps/issues/181)) ([84225c6](https://github.com/techguru536/react-google-maps/commit/84225c6d0b9314cae45c7eb9dc4d7195e36eba21))
+* remove obsolete hooks ([#219](https://github.com/techguru536/react-google-maps/issues/219)) ([f0879c9](https://github.com/techguru536/react-google-maps/commit/f0879c96312e060b83ff855c6ec843c4a582eb2f))
+
 ## [1.0.0](https://github.com/visgl/react-google-maps/compare/v0.11.2...v1.0.0) (2024-05-11)
 
 
